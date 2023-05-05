@@ -172,11 +172,8 @@ void nbVibeAnnoy() {
   if(current_millis - vibe_prev_millis >= vibe_interval) {
     vibe_prev_millis = current_millis;
 
-    if(vibe_state == LOW) {
-      vibe_state = HIGH;
-    } else {
-      vibe_state = LOW;
-    }
+    vibe_state = !vibe_state;
+    
     digitalWrite(vibe_pin, vibe_state);
   }
 }
@@ -192,13 +189,9 @@ void nbLedAnnoy() {
   if(current_millis - led_prev_millis >= led_blink_interval) {
     led_prev_millis = current_millis;
 
-    if(led00_state == LOW) {
-      led00_state = HIGH;
-      led01_state = LOW;
-    } else {
-      led00_state = LOW;
-      led01_state = HIGH;
-    }
+    led00_state = !led00_state;
+    led01_state = !led00_state; // the original value of led00_state after 2 inversions
+    
     digitalWrite(led00_pin, led00_state);
     digitalWrite(led01_pin, led01_state);
   }
@@ -215,11 +208,8 @@ void nbToneAnnoy() {
   if(current_millis - tone_prev_millis >= tone_interval) {
     tone_prev_millis = current_millis;
 
-    if(tone_state == LOW) {
-      tone_state = HIGH;
-    } else {
-      tone_state = LOW;
-    }
+    tone_state = !tone_state;
+    
     digitalWrite(piezo_pin, tone_state);
   }
 }
